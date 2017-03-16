@@ -1,5 +1,5 @@
 # alfred
-An R-package for obtaining real-time data from ALFRED database
+An R-package for obtaining vintage data from ALFRED database
 
 ## ToDo
 1) Choosing vintage begin and end.
