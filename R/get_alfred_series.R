@@ -10,6 +10,8 @@
 #' @importFrom dplyr mutate
 #' @importFrom dplyr filter
 #' @importFrom lubridate as_date
+#' @importFrom magrittr %>%
+#' @importFrom dplyr bind_rows
 # @examples get_alfred_series("INDPRO", "indpro")
 # @examples get_alfred_series("INDPRO", "indpro", real_time_start = "2008-10-31", real_time_end = "2009-10-31")
 
@@ -89,6 +91,8 @@ get_alfred_series <- function(series_id, series_name, observation_start = NULL, 
 #' @importFrom tibble as_tibble
 #' @importFrom dplyr mutate
 #' @importFrom lubridate as_date
+#' @importFrom magrittr %>%
+#' @importFrom dplyr bind_rows
 # @examples get_fred_series("INDPRO", "indpro")
 
 get_fred_series <- function(series_id, series_name, observation_start = NULL, observation_end = NULL) {

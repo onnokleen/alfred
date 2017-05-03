@@ -2,9 +2,11 @@
 
 export(get_alfred_series)
 export(get_fred_series)
+importFrom(dplyr,bind_rows)
 importFrom(dplyr,filter)
 importFrom(dplyr,mutate)
 importFrom(lubridate,as_date)
+importFrom(magrittr,"%>%")
 importFrom(tibble,as_tibble)
 importFrom(tidyr,gather)
 importFrom(xml2,read_xml)
