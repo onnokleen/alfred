@@ -2,9 +2,9 @@
 #' @param series_id, series_name.
 #' @keywords alfred
 #' @export get_alfred_series
-#' @importFrom readxml2 read_xml
-#' @importFrom readxml2 xml_children
-#' @importFrom readxml2 xml_attrs
+#' @importFrom xml2 read_xml
+#' @importFrom xml2 xml_children
+#' @importFrom xml2 xml_attrs
 #' @importFrom tibble as_tibble
 #' @importFrom tidyr gather
 #' @importFrom dplyr mutate
@@ -25,11 +25,11 @@ get_alfred_series <- function(series_id, series_name, observation_start = NULL, 
   }
 
   if (is.null(observation_start) == TRUE) {
-    real_time_end <- "1776-07-04"
+    observation_start <- "1776-07-04"
   }
 
   if (is.null(observation_end) == TRUE) {
-    real_time_end <- "9999-12-31"
+    observation_end <- "9999-12-31"
   }
 
   df_series <-
@@ -83,15 +83,15 @@ get_alfred_series <- function(series_id, series_name, observation_start = NULL, 
 #' @param series_id, series_name.
 #' @keywords fred
 #' @export get_fred_series
-#' @importFrom readxml2 read_xml
-#' @importFrom readxml2 xml_children
-#' @importFrom readxml2 xml_attrs
+#' @importFrom xml2 read_xml
+#' @importFrom xml2 xml_children
+#' @importFrom xml2 xml_attrs
 #' @importFrom tibble as_tibble
 #' @importFrom dplyr mutate
 #' @importFrom lubridate as_date
 # @examples get_fred_series("INDPRO", "indpro")
 
-get_fred_series <- function(series_id, series_name, observation_start = NULL, observation_end = NULL,) {
+get_fred_series <- function(series_id, series_name, observation_start = NULL, observation_end = NULL) {
   length_series_id <- nchar(series_id)
 
   if (is.null(observation_start) == TRUE) {
@@ -109,7 +109,7 @@ get_fred_series <- function(series_id, series_name, observation_start = NULL, ob
                     observation_start,
                     "&observation_end=",
                     observation_end,
-                    "api_key=98f9f5cad7212e246dc5955e9b744b24"))
+                    "&api_key=98f9f5cad7212e246dc5955e9b744b24"))
 
   suppressMessages(
     df_series <-

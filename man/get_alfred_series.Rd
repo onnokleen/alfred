@@ -2,15 +2,15 @@
 % Please edit documentation in R/get_alfred_series.R
 \name{get_alfred_series}
 \alias{get_alfred_series}
-\title{This function estimates a multiplicative mixed-frequency GARCH model}
+\title{This function downloads times series from the alfred dadatabase, https://alfred.stlouisfed.org}
 \usage{
-get_alfred_series(series_id, series_name)
+get_alfred_series(series_id, series_name, observation_start = NULL,
+  observation_end = NULL, real_time_start = NULL, real_time_end = NULL)
 }
 \arguments{
 \item{series_id, }{series_name.}
 }
 \description{
-This function estimates a multiplicative mixed-frequency GARCH model
+This function downloads times series from the alfred dadatabase, https://alfred.stlouisfed.org
 }
 \keyword{alfred}
-
