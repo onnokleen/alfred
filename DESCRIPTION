@@ -1,6 +1,6 @@
 Package: alfred
 Title: Downloading time series from ALFRED database for various vintages
-Version: 0.0.1
+Version: 0.1
 Authors@R: person("Onno", "Kleen", email = "mail@onnokleen.de", role = c("aut", "cre"))
 Description: This R package provides direct access to the ALFFRED and FRED databases.
     Its functions return tidy data frames for different releases of the specified time series.
@@ -20,5 +20,6 @@ URL: https://github.com/onnokleen/alfred/
 BugReports: https://github.com/onnokleen/alfred/issues
 Suggests: testthat,
     knitr,
-    rmarkdown
+    rmarkdown,
+    ggplot2
 VignetteBuilder: knitr
