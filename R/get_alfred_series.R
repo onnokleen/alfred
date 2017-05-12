@@ -5,10 +5,10 @@
 #' @name get_alfred_series
 #' @param series_id FRED times series ID.
 #' @param series_name Choose a name for the series column in output. Default: series_id.
-#' @param observation_start Date of first observation in "yyyy-mm-dd" format.
-#' @param observation_end Date of last observation in "yyyy-mm-dd" format.
-#' @param real_time_start Date of first real time period in "yyyy-mm-dd" format.
-#' @param real_time_end Date of last real time period in "yyyy-mm-dd" format.
+#' @param observation_start Date of first observation in "yyyy-mm-dd" format. Default: Earliest observation available.
+#' @param observation_end Date of last observation in "yyyy-mm-dd" format. Default: Last observation available.
+#' @param real_time_start Date of first real time period in "yyyy-mm-dd" format. Default: First vintage date available.
+#' @param real_time_end Date of last real time period in "yyyy-mm-dd" format. Default: Last vintage date available.
 #' @details FRED time series IDs can be found on the respective site in ALFRED, i.e. \url{https://alfred.stlouisfed.org/series?seid=CPIAUCSL}.
 #' @keywords alfred
 #' @export get_alfred_series
@@ -109,8 +109,8 @@ get_alfred_series <-
 #' @name get_fred_series
 #' @param series_id FRED times series ID.
 #' @param series_name Choose a name for the series column in output. Default: series_id.
-#' @param observation_start Date of first observation in "yyyy-mm-dd" format.
-#' @param observation_end Date of last observation in "yyyy-mm-dd" format.
+#' @param observation_start Date of first observation in "yyyy-mm-dd" format. Default: Earliest observation available.
+#' @param observation_end Date of last observation in "yyyy-mm-dd" format. Default: Last observation available.
 #' @keywords fred
 #' @usage get_fred_series(series_id, series_name = NULL,
 #'     observation_start = NULL, observation_end = NULL)

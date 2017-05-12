@@ -12,9 +12,9 @@ get_fred_series(series_id, series_name = NULL,
 
 \item{series_name}{Choose a name for the series column in output. Default: series_id.}
 
-\item{observation_start}{Date of first observation in "yyyy-mm-dd" format.}
+\item{observation_start}{Date of first observation in "yyyy-mm-dd" format. Default: Earliest observation available.}
 
-\item{observation_end}{Date of last observation in "yyyy-mm-dd" format.}
+\item{observation_end}{Date of last observation in "yyyy-mm-dd" format. Default: Last observation available.}
 }
 \description{
 This function can pull time series from the FRED database: \url{https://fred.stlouisfed.org}

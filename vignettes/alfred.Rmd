@@ -1,0 +1,70 @@
+---
+title: "Introduction to alfred"
+author: "Onno Kleen"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+A quick introduction for downloading FRED and ALFRED data.
+
+## Installation
+
+Right now, the devtools package is needed until I submitted the package to CRAN
+
+```{r, eval=FALSE}
+install.packages("devtools")
+devtools::install_github("onnokleen/alfred")
+```
+
+## Usage
+
+Downloading data is straightforward (for real-time data from ALFRED see below):
+
+```{r}
+library(alfred)
+df <- get_fred_series("INDPRO", "indpro")
+```
+
+The output is a data frame 
+
+```{r}
+df
+```
+
+This can be readily used, i.e. for plotting
+
+```{r, fig.show = "hold"}
+library(ggplot2)
+ggplot(df) +
+  geom_line(aes(x = date, y = indpro))
+```
+
+## Vintage data
+
+When using get_alfred_series for downloading real-time data sets, there will be an additional column for the respective vintage dates.
+
+```{r}
+df_vintages <- 
+  get_alfred_series("GDPC1", "rgdp",
+                    observation_start = "2007-05-31",
+                    real_time_start = "2008-05-31", real_time_end = "2009-03-30")
+df_vintages
+```
+
+Because of its output being a tidy data frame, it is easy to visualise revisions by 
+
+```{r, fig.show = "hold", fig.width = 6}
+library(ggplot2)
+
+ggplot(df_vintages) +
+  geom_line(aes(x = date, y = rgdp, colour = as.factor(realtime_period))) +
+  theme_bw() +
+  theme(
+    legend.title = element_blank(),
+    legend.position = "bottom"
+  )
+```
