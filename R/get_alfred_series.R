@@ -98,7 +98,7 @@ get_alfred_series <-
             name = ~as.numeric(name)) %>%
     filter_(.dots= paste0("realtime_period", "!= ", "9999-12-31"))
 
-  colnames(df_series)[colnames(df_series) %in% "name"] <- series_name
+  colnames(df_series)[!colnames(df_series) %in% c("date", "realtime_period")] <- series_name
 
   df_series
 }
