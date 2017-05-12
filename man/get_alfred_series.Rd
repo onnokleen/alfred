@@ -2,32 +2,37 @@
 % Please edit documentation in R/get_alfred_series.R
 \name{get_alfred_series}
 \alias{get_alfred_series}
-\title{This function downloads time series from the alfred dadatabase, \url{https://alfred.stlouisfed.org}}
+\title{Accessing ALFRED}
 \usage{
 get_alfred_series(series_id, series_name = NULL,
     observation_start = NULL, observation_end = NULL,
     real_time_start = NULL, real_time_end = NULL)
 }
 \arguments{
-\item{series_id}{The series FRED times series ID}
+\item{series_id}{FRED times series ID.}
 
-\item{series_name}{The}
+\item{series_name}{Choose a name for the series column in output. Default: series_id.}
 
-\item{observation_start}{test}
+\item{observation_start}{Date of first observation in "yyyy-mm-dd" format.}
 
-\item{observation_end}{test}
+\item{observation_end}{Date of last observation in "yyyy-mm-dd" format.}
 
-\item{real_time_start}{test}
+\item{real_time_start}{Date of first real time period in "yyyy-mm-dd" format.}
 
-\item{real_time_end}{test}
+\item{real_time_end}{Date of last real time period in "yyyy-mm-dd" format.}
 }
 \description{
-This function downloads time series from the alfred dadatabase, \url{https://alfred.stlouisfed.org}
+This function can pull time series from the ALFRED database: \url{https://alfred.stlouisfed.org}
+Downloading different vintages for performing real-time analysis is provided.
+}
+\details{
+FRED time series IDs can be found on the respective site in ALFRED, i.e. \url{https://alfred.stlouisfed.org/series?seid=CPIAUCSL}.
 }
 \examples{
 \dontrun{
     get_alfred_series("INDPRO", "indpro")
-}
+    }
+
 get_alfred_series("INDPRO", "indpro", real_time_start = "2008-10-31", real_time_end = "2009-10-31")
 }
 \keyword{alfred}

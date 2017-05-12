@@ -2,22 +2,22 @@
 % Please edit documentation in R/get_alfred_series.R
 \name{get_fred_series}
 \alias{get_fred_series}
-\title{This function downloads times series from fred dadatabase, https://fred.stlouisfed.org}
+\title{Accessing FRED}
 \usage{
 get_fred_series(series_id, series_name = NULL,
     observation_start = NULL, observation_end = NULL)
 }
 \arguments{
-\item{series_id}{test}
+\item{series_id}{FRED times series ID.}
 
-\item{series_name}{test}
+\item{series_name}{Choose a name for the series column in output. Default: series_id.}
 
-\item{observation_start}{test}
+\item{observation_start}{Date of first observation in "yyyy-mm-dd" format.}
 
-\item{observation_end}{test}
+\item{observation_end}{Date of last observation in "yyyy-mm-dd" format.}
 }
 \description{
-This function downloads times series from fred dadatabase, https://fred.stlouisfed.org
+This function can pull time series from the FRED database: \url{https://fred.stlouisfed.org}
 }
 \examples{
 get_fred_series("INDPRO", "indpro")

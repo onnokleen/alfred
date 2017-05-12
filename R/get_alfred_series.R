@@ -1,11 +1,15 @@
-#' This function downloads time series from the alfred dadatabase, \url{https://alfred.stlouisfed.org}
+#' Accessing ALFRED
+#'
+#' This function can pull time series from the ALFRED database: \url{https://alfred.stlouisfed.org}
+#' Downloading different vintages for performing real-time analysis is provided.
 #' @name get_alfred_series
-#' @param series_id The series FRED times series ID
-#' @param series_name The
-#' @param observation_start test
-#' @param observation_end test
-#' @param real_time_start test
-#' @param real_time_end test
+#' @param series_id FRED times series ID.
+#' @param series_name Choose a name for the series column in output. Default: series_id.
+#' @param observation_start Date of first observation in "yyyy-mm-dd" format.
+#' @param observation_end Date of last observation in "yyyy-mm-dd" format.
+#' @param real_time_start Date of first real time period in "yyyy-mm-dd" format.
+#' @param real_time_end Date of last real time period in "yyyy-mm-dd" format.
+#' @details FRED time series IDs can be found on the respective site in ALFRED, i.e. \url{https://alfred.stlouisfed.org/series?seid=CPIAUCSL}.
 #' @keywords alfred
 #' @export get_alfred_series
 #' @usage get_alfred_series(series_id, series_name = NULL,
@@ -24,7 +28,8 @@
 #' @importFrom stats na.omit
 #' @examples \dontrun{
 #'     get_alfred_series("INDPRO", "indpro")
-#' }
+#'     }
+#'
 #' @examples get_alfred_series("INDPRO", "indpro", real_time_start = "2008-10-31", real_time_end = "2009-10-31")
 
 get_alfred_series <-
@@ -98,12 +103,14 @@ get_alfred_series <-
   df_series
 }
 
-#' This function downloads times series from fred dadatabase, https://fred.stlouisfed.org
+#' Accessing FRED
+#'
+#' This function can pull time series from the FRED database: \url{https://fred.stlouisfed.org}
 #' @name get_fred_series
-#' @param series_id test
-#' @param series_name test
-#' @param observation_start test
-#' @param observation_end test
+#' @param series_id FRED times series ID.
+#' @param series_name Choose a name for the series column in output. Default: series_id.
+#' @param observation_start Date of first observation in "yyyy-mm-dd" format.
+#' @param observation_end Date of last observation in "yyyy-mm-dd" format.
 #' @keywords fred
 #' @usage get_fred_series(series_id, series_name = NULL,
 #'     observation_start = NULL, observation_end = NULL)
