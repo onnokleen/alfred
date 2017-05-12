@@ -2,15 +2,32 @@
 % Please edit documentation in R/get_alfred_series.R
 \name{get_alfred_series}
 \alias{get_alfred_series}
-\title{This function downloads times series from the alfred dadatabase, https://alfred.stlouisfed.org}
+\title{This function downloads time series from the alfred dadatabase, \url{https://alfred.stlouisfed.org}}
 \usage{
-get_alfred_series(series_id, series_name, observation_start = NULL,
-  observation_end = NULL, real_time_start = NULL, real_time_end = NULL)
+get_alfred_series(series_id, series_name = NULL,
+    observation_start = NULL, observation_end = NULL,
+    real_time_start = NULL, real_time_end = NULL)
 }
 \arguments{
-\item{series_id, }{series_name.}
+\item{series_id}{The series FRED times series ID}
+
+\item{series_name}{The}
+
+\item{observation_start}{test}
+
+\item{observation_end}{test}
+
+\item{real_time_start}{test}
+
+\item{real_time_end}{test}
 }
 \description{
-This function downloads times series from the alfred dadatabase, https://alfred.stlouisfed.org
+This function downloads time series from the alfred dadatabase, \url{https://alfred.stlouisfed.org}
+}
+\examples{
+\dontrun{
+    get_alfred_series("INDPRO", "indpro")
+}
+get_alfred_series("INDPRO", "indpro", real_time_start = "2008-10-31", real_time_end = "2009-10-31")
 }
 \keyword{alfred}

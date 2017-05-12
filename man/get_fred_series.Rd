@@ -2,15 +2,24 @@
 % Please edit documentation in R/get_alfred_series.R
 \name{get_fred_series}
 \alias{get_fred_series}
-\title{This function downloads times series from the fred dadatabase, https://alfred.stlouisfed.org}
+\title{This function downloads times series from fred dadatabase, https://fred.stlouisfed.org}
 \usage{
-get_fred_series(series_id, series_name, observation_start = NULL,
-  observation_end = NULL)
+get_fred_series(series_id, series_name = NULL,
+    observation_start = NULL, observation_end = NULL)
 }
 \arguments{
-\item{series_id, }{series_name.}
+\item{series_id}{test}
+
+\item{series_name}{test}
+
+\item{observation_start}{test}
+
+\item{observation_end}{test}
 }
 \description{
-This function downloads times series from the fred dadatabase, https://alfred.stlouisfed.org
+This function downloads times series from fred dadatabase, https://fred.stlouisfed.org
+}
+\examples{
+get_fred_series("INDPRO", "indpro")
 }
 \keyword{fred}
