@@ -6,6 +6,7 @@ An R-package for obtaining vintage data from ALFRED: https://alfred.stlouisfed.o
   - Returns tidy data frames for further analysis, see https://cran.r-project.org/web/packages/tidyr/vignettes/tidy-data.html.
   
 ## Usage
+A more detailed example can be found in my vignette: https://www.dropbox.com/s/b553pkrepx6autv/alfred.pdf?dl=0
 ```r
 library(alfred)
 # Download industrial production index releases from March 2015 for 2013.
