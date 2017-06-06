@@ -1,5 +1,5 @@
 Package: alfred
-Title: Downloading time series from ALFRED database for various vintages
+Title: Downloading Time Series from ALFRED Database for Various Vintages
 Version: 0.1
 Authors@R: person("Onno", "Kleen", email = "mail@onnokleen.de", role = c("aut", "cre"))
 Description: This R package provides direct access to the ALFFRED and FRED databases.
