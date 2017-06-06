@@ -1,7 +1,8 @@
 ## Resubmission
 This is a resubmission. In this version I have:
 
-* fixed mis-use of LICENSE (MIT)
+* Phrasing in description 
+* Added URLs to data bases mentioned in description.
 
 ### Test environments
 * local OS X install, R 3.4.0
