@@ -27,3 +27,5 @@ vignettes/*.pdf
 .DS_Store
 #inst/doc
 .Rbuildignore
+.cran-comments.md
+NEWS.md
