@@ -28,4 +28,5 @@ install_github("onnokleen/alfred")
 ```
 
 ## History
-  - May 2017: First stable release on github.
+- June 2017: First release on CRAN
+- May 2017: First stable release on github.
