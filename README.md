@@ -1,21 +1,22 @@
 [![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/alfred)](https://cran.r-project.org/package=alfred)
 [![Travis-CI Build Status](https://travis-ci.org/onnokleen/alfred.svg?branch=master)](https://travis-ci.org/onnokleen/alfred)
 [![Coverage Status](https://img.shields.io/coveralls/onnokleen/alfred.svg)](https://coveralls.io/r/onnokleen/alfred?branch=master)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 # alfred
-An R-package for obtaining vintage data from ALFRED: https://alfred.stlouisfed.org.
+An R-package for obtaining vintage data from ALFRED: https://alfred.stlouisfed.org. Note that this product uses the FRED&copy; API but is not endorsed or certified by the Federal Reserve Bank of St. Louis.
 
 ## Highlights
   - Simple-to-use function for downloading real-time data from ALFRED at different points in time.
   - Returns tidy data frames for further analysis, see https://cran.r-project.org/web/packages/tidyr/vignettes/tidy-data.html.
   
 ## Usage
-A more detailed example can be found in my vignette: https://www.dropbox.com/s/b553pkrepx6autv/alfred.pdf?dl=0
+A more detailed example can be found in my vignette: https://cran.r-project.org/web/packages/alfred/vignettes/alfred.pdf
 
 ```r
 library(alfred)
 # Download industrial production index releases from March 2015 for 2013.
 get_alfred_series("INDPRO", "test",
-                  observation_start = "2013-03-01", observation_end = "2013-06-30",
+                  observation_start = "2013-03-01", observation_end = "2013-03-30",
                   real_time_start = "2015-02-02", real_time_end = "2015-02-02")
 # Wrapper for getting only most recent releases 
 get_fred_series("INDPRO", "indpro", observation_start = "2009-03-01", observation_end = "2009-03-01")

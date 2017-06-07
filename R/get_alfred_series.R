@@ -35,7 +35,8 @@
 get_alfred_series <-
   function(series_id, series_name = NULL,
            observation_start = NULL, observation_end = NULL,
-           real_time_start = NULL, real_time_end = NULL) {
+           real_time_start = NULL, real_time_end = NULL,
+           api_key = NULL) {
 
   if (is.character(series_id) == FALSE) {
     stop("series_id is always in characters")
@@ -63,42 +64,49 @@ get_alfred_series <-
     observation_end <- "9999-12-31"
   }
 
-  df_series <-
-    read_xml(paste0("https://api.stlouisfed.org/fred/series/observations?series_id=",
-                    series_id,
-                    "&realtime_start=",
-                    real_time_start,
-                    "&realtime_end=",
-                    real_time_end,
-                    "&output_type=2&observation_start=",
-                    observation_start,
-                    "&observation_end=",
-                    observation_end,
-                    "&api_key=98f9f5cad7212e246dc5955e9b744b24"))
+  if (is.null(api_key) == TRUE) {
+    print("no fred api-key provided - note that indirect access may take longer")
+  } else {
+    df_series <-
+      read_xml(paste0("https://api.stlouisfed.org/fred/series/observations?series_id=",
+                      series_id,
+                      "&realtime_start=",
+                      real_time_start,
+                      "&realtime_end=",
+                      real_time_end,
+                      "&output_type=2&observation_start=",
+                      observation_start,
+                      "&observation_end=",
+                      observation_end,
+                      "&api_key=",
+                      api_key))
 
-  # Form list of xml files to data frame
-  df_series <-
-    lapply(xml_children(df_series), function(x) as.list(xml_attrs(x))) %>%
-    lapply(unlist) %>%
-    lapply(as.list) %>%
-    lapply(as_tibble) %>%
-    bind_rows()
+    # Form list of xml files to data frame
+    df_series <-
+      lapply(xml_children(df_series), function(x) as.list(xml_attrs(x))) %>%
+      lapply(unlist) %>%
+      lapply(as.list) %>%
+      lapply(as_tibble) %>%
+      bind_rows()
 
-  # Reshape data and convert columns into preferred type
-  df_series <-
-    df_series %>%
-    gather_("realtime_period", "name", setdiff(names(df_series), "date")) %>%
-    na.omit() %>%
-    mutate_(realtime_period = ~paste(substr(realtime_period, start = length_series_id + 2, stop = length_series_id + 5),
-                                   substr(realtime_period, start = length_series_id + 6, stop = length_series_id + 7),
-                                   substr(realtime_period, start = length_series_id + 8, stop = length_series_id + 9),
-                                   sep = "-")) %>%
-    mutate_(realtime_period = ~as_date(realtime_period),
-            date = ~as_date(date),
-            name = ~as.numeric(name)) %>%
-    filter_(.dots = paste0("realtime_period", "!= ", "9999-12-31"))
+    # Reshape data and convert columns into preferred type
+    df_series <-
+      df_series %>%
+      gather_("realtime_period", "name", setdiff(names(df_series), "date")) %>%
+      na.omit() %>%
+      mutate_(realtime_period = ~paste(substr(realtime_period, start = length_series_id + 2, stop = length_series_id + 5),
+                                       substr(realtime_period, start = length_series_id + 6, stop = length_series_id + 7),
+                                       substr(realtime_period, start = length_series_id + 8, stop = length_series_id + 9),
+                                       sep = "-")) %>%
+      mutate_(realtime_period = ~as_date(realtime_period),
+              date = ~as_date(date),
+              name = ~as.numeric(name)) %>%
+      filter_(.dots = paste0("realtime_period", "!= ", "9999-12-31"))
 
-  colnames(df_series)[!colnames(df_series) %in% c("date", "realtime_period")] <- series_name
+    colnames(df_series)[!colnames(df_series) %in% c("date", "realtime_period")] <- series_name
+
+
+  }
 
   df_series
 }
@@ -111,6 +119,7 @@ get_alfred_series <-
 #' @param series_name Choose a name for the series column in output. Default: series_id.
 #' @param observation_start Date of first observation in "yyyy-mm-dd" format. Default: Earliest observation available.
 #' @param observation_end Date of last observation in "yyyy-mm-dd" format. Default: Last observation available.
+#' @param api_key Fred
 #' @keywords fred
 #' @usage get_fred_series(series_id, series_name = NULL,
 #'     observation_start = NULL, observation_end = NULL)
@@ -124,7 +133,9 @@ get_alfred_series <-
 #' @importFrom magrittr %>%
 #' @importFrom dplyr bind_rows
 #' @examples get_fred_series("INDPRO", "indpro")
-get_fred_series <- function(series_id, series_name = NULL, observation_start = NULL, observation_end = NULL) {
+get_fred_series <- function(series_id, series_name = NULL,
+                            observation_start = NULL, observation_end = NULL,
+                            api_key = NULL) {
   length_series_id <- nchar(series_id)
 
   if (is.character(series_id) == FALSE) {
@@ -143,28 +154,33 @@ get_fred_series <- function(series_id, series_name = NULL, observation_start = N
     observation_end <- "9999-12-31"
   }
 
-  df_series <-
-    read_xml(paste0("https://api.stlouisfed.org/fred/series/observations?series_id=",
-                    series_id,
-                    "&output_type=2&observation_start=",
-                    observation_start,
-                    "&observation_end=",
-                    observation_end,
-                    "&api_key=98f9f5cad7212e246dc5955e9b744b24"))
+  if (is.null(api_key) == TRUE) {
 
-  suppressMessages(
+  } else {
     df_series <-
-      lapply(xml_children(df_series), function(x) as.list(xml_attrs(x))) %>%
-      lapply(unlist) %>%
-      lapply(as.list) %>%
-      lapply(as_tibble) %>%
-      bind_rows() %>%
-      mutate_(date = ~as_date(date))
-  )
+      read_xml(paste0("https://api.stlouisfed.org/fred/series/observations?series_id=",
+                      series_id,
+                      "&output_type=2&observation_start=",
+                      observation_start,
+                      "&observation_end=",
+                      observation_end,
+                      "&api_key=",
+                      api_key))
 
-  colnames(df_series)[!(colnames(df_series) %in% "date")] <- series_name
+    suppressMessages(
+      df_series <-
+        lapply(xml_children(df_series), function(x) as.list(xml_attrs(x))) %>%
+        lapply(unlist) %>%
+        lapply(as.list) %>%
+        lapply(as_tibble) %>%
+        bind_rows() %>%
+        mutate_(date = ~as_date(date))
+    )
 
-  df_series[, 2] <- as.numeric(unlist(df_series[, 2]))
+    colnames(df_series)[!(colnames(df_series) %in% "date")] <- series_name
+
+    df_series[, 2] <- as.numeric(unlist(df_series[, 2]))
+  }
 
   df_series
 }
