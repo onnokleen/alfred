@@ -1,6 +1,6 @@
 #' Accessing ALFRED
 #'
-#' This function can pull time series from the ALFRED database: \url{https://alfred.stlouisfed.org}
+#' This function can pull time series from the ALFRED database: \url{https://alfred.stlouisfed.org}.
 #' Downloading different vintages for performing real-time analysis is provided.
 #' @name get_alfred_series
 #' @param series_id FRED times series ID.
@@ -113,7 +113,7 @@ get_alfred_series <-
 
 #' Accessing FRED
 #'
-#' This function can pull time series from the FRED database: \url{https://fred.stlouisfed.org}
+#' This function can pull time series from the FRED database: \url{https://fred.stlouisfed.org}.
 #' @name get_fred_series
 #' @param series_id FRED times series ID.
 #' @param series_name Choose a name for the series column in output. Default: series_id.
