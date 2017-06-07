@@ -64,9 +64,9 @@ get_alfred_series <-
     observation_end <- "9999-12-31"
   }
 
-  if (is.null(api_key) == TRUE) {
-    print("no fred api-key provided - note that indirect access may take longer")
-  } else {
+  # if (is.null(api_key) == TRUE) {
+  #   print("no fred api-key provided - note that indirect access may take longer")
+  # } else {
     df_series <-
       read_xml(paste0("https://api.stlouisfed.org/fred/series/observations?series_id=",
                       series_id,
@@ -106,7 +106,7 @@ get_alfred_series <-
     colnames(df_series)[!colnames(df_series) %in% c("date", "realtime_period")] <- series_name
 
 
-  }
+  # }
 
   df_series
 }
@@ -154,9 +154,9 @@ get_fred_series <- function(series_id, series_name = NULL,
     observation_end <- "9999-12-31"
   }
 
-  if (is.null(api_key) == TRUE) {
-
-  } else {
+  # if (is.null(api_key) == TRUE) {
+  #
+  # } else {
     df_series <-
       read_xml(paste0("https://api.stlouisfed.org/fred/series/observations?series_id=",
                       series_id,
@@ -180,7 +180,7 @@ get_fred_series <- function(series_id, series_name = NULL,
     colnames(df_series)[!(colnames(df_series) %in% "date")] <- series_name
 
     df_series[, 2] <- as.numeric(unlist(df_series[, 2]))
-  }
+  # }
 
   df_series
 }
