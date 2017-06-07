@@ -21,5 +21,6 @@ BugReports: https://github.com/onnokleen/alfred/issues
 Suggests: testthat,
     knitr,
     rmarkdown,
-    ggplot2
+    ggplot2,
+    covr
 VignetteBuilder: knitr
