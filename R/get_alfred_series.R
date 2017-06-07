@@ -9,7 +9,7 @@
 #' @param observation_end Date of last observation in "yyyy-mm-dd" format. Default: Last observation available.
 #' @param real_time_start Date of first real time period in "yyyy-mm-dd" format. Default: First vintage date available.
 #' @param real_time_end Date of last real time period in "yyyy-mm-dd" format. Default: Last vintage date available.
-#' @details FRED time series IDs can be found on the respective site in ALFRED, i.e. \url{https://alfred.stlouisfed.org/series?seid=CPIAUCSL}.
+#' @details FRED time series IDs can be found on the respective site in ALFRED, e.g. \url{https://alfred.stlouisfed.org/series?seid=CPIAUCSL}.
 #' @keywords alfred
 #' @export get_alfred_series
 #' @usage get_alfred_series(series_id, series_name = NULL,
