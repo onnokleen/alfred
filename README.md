@@ -1,3 +1,4 @@
+[![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/alfred)](https://cran.r-project.org/package=alfred)
 # alfred
 An R-package for obtaining vintage data from ALFRED: https://alfred.stlouisfed.org.
 
