@@ -29,4 +29,3 @@ vignettes/*.pdf
 .Rbuildignore
 .cran-comments.md
 NEWS.md
-inst/doc
