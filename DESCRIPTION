@@ -3,7 +3,8 @@ Title: Downloading Time Series from ALFRED Database for Various Vintages
 Version: 0.1.0
 Authors@R: person("Onno", "Kleen", email = "mail@onnokleen.de", role = c("aut", "cre"))
 Description: Provides direct access to the ALFRED (<https://alfred.stlouisfed.org>) and FRED (<https://fred.stlouisfed.org>) databases.
-    Its functions return tidy data frames for different releases of the specified time series.
+    Its functions return tidy data frames for different releases of the specified time series. 
+    Note that this product uses the FRED© API but is not endorsed or certified by the Federal Reserve Bank of St. Louis.
 Depends: R (>= 3.3.0)
 License: MIT + file LICENSE
 Encoding: UTF-8
