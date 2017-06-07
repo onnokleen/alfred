@@ -2,8 +2,7 @@
 title: "Introduction to alfred"
 author: "Onno Kleen"
 date: "`r Sys.Date()`"
-#output: rmarkdown::html_vignette
-output: pdf_document
+output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{alfred}
   %\VignetteEngine{knitr::rmarkdown}
