@@ -15,7 +15,7 @@ ggplot(df) +
   geom_line(aes(x = date, y = indpro))
 
 ## ------------------------------------------------------------------------
-df_vintages <- 
+df_vintages <-
   get_alfred_series("GDPC1", "rgdp",
                     observation_start = "2007-05-31",
                     real_time_start = "2008-05-31", real_time_end = "2009-03-30")
@@ -31,4 +31,3 @@ ggplot(df_vintages) +
     legend.title = element_blank(),
     legend.position = "bottom"
   )
-

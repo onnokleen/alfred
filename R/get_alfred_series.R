@@ -96,7 +96,7 @@ get_alfred_series <-
     mutate_(realtime_period = ~as_date(realtime_period),
             date = ~as_date(date),
             name = ~as.numeric(name)) %>%
-    filter_(.dots= paste0("realtime_period", "!= ", "9999-12-31"))
+    filter_(.dots = paste0("realtime_period", "!= ", "9999-12-31"))
 
   colnames(df_series)[!colnames(df_series) %in% c("date", "realtime_period")] <- series_name
 
@@ -164,7 +164,7 @@ get_fred_series <- function(series_id, series_name = NULL, observation_start = N
 
   colnames(df_series)[!(colnames(df_series) %in% "date")] <- series_name
 
-  df_series[,2] <- as.numeric(unlist(df_series[,2]))
+  df_series[, 2] <- as.numeric(unlist(df_series[, 2]))
 
   df_series
 }
