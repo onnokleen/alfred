@@ -15,4 +15,12 @@ test_that("Downloaded data is as expected", {
       date = as.Date("2009-03-01"),
       test = 89.1913)
   )
+  expect_error(
+    get_fred_series(1231232, "test",
+                    observation_start = "2009-03-01", observation_end = "2009-03-01")
+  )
+  expect_error(
+    get_alfred_series(1231232, "test",
+                    observation_start = "2009-03-01", observation_end = "2009-03-01")
+  )
 })
