@@ -8,6 +8,7 @@ An R-package for obtaining vintage data from ALFRED: https://alfred.stlouisfed.o
 ## Highlights
   - Simple-to-use function for downloading real-time data from ALFRED at different points in time.
   - Returns tidy data frames for further analysis, see https://cran.r-project.org/web/packages/tidyr/vignettes/tidy-data.html.
+  - Contrary to similar R-packages, you don't have to get an API-key yourself.
   
 ## Usage
 A more detailed example can be found in my vignette: https://cran.r-project.org/web/packages/alfred/vignettes/alfred.pdf
