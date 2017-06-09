@@ -13,9 +13,11 @@ A quick introduction for downloading FRED and ALFRED data.
 
 ## Installation
 
-Right now, the devtools package is needed until I submitted the package to CRAN
+You may install the last stable release via CRAN or the latest development version from github.
 
 ```{r, eval=FALSE}
+install.packages("alfred")
+# or
 install.packages("devtools")
 devtools::install_github("onnokleen/alfred")
 ```
@@ -29,7 +31,7 @@ library(alfred)
 df <- get_fred_series("INDPRO", "indpro")
 ```
 
-The output is a data frame 
+The output is a data frame
 
 ```{r}
 df
@@ -48,14 +50,14 @@ ggplot(df) +
 When using get_alfred_series for downloading real-time data sets, there will be an additional column for the respective vintage dates.
 
 ```{r}
-df_vintages <- 
+df_vintages <-
   get_alfred_series("GDPC1", "rgdp",
                     observation_start = "2007-05-31",
                     real_time_start = "2008-05-31", real_time_end = "2009-03-30")
 df_vintages
 ```
 
-Because of its output being a tidy data frame, it is easy to visualise revisions by 
+Because of its output being a tidy data frame, it is easy to visualise revisions by
 
 ```{r, fig.show = "hold", fig.width = 6}
 library(ggplot2)

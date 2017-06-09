@@ -22,11 +22,11 @@ get_alfred_series(series_id, series_name = NULL,
 \item{real_time_end}{Date of last real time period in "yyyy-mm-dd" format. Default: Last vintage date available.}
 }
 \description{
-This function can pull time series from the ALFRED database: \url{https://alfred.stlouisfed.org}
+This function can pull time series from the ALFRED database: \url{https://alfred.stlouisfed.org}.
 Downloading different vintages for performing real-time analysis is provided.
 }
 \details{
-FRED time series IDs can be found on the respective site in ALFRED, i.e. \url{https://alfred.stlouisfed.org/series?seid=CPIAUCSL}.
+FRED time series IDs can be found on the respective site in ALFRED, e.g. \url{https://alfred.stlouisfed.org/series?seid=CPIAUCSL}.
 }
 \examples{
 \dontrun{

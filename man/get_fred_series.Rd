@@ -17,7 +17,7 @@ get_fred_series(series_id, series_name = NULL,
 \item{observation_end}{Date of last observation in "yyyy-mm-dd" format. Default: Last observation available.}
 }
 \description{
-This function can pull time series from the FRED database: \url{https://fred.stlouisfed.org}
+This function can pull time series from the FRED database: \url{https://fred.stlouisfed.org}.
 }
 \examples{
 get_fred_series("INDPRO", "indpro")
