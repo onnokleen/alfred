@@ -3,4 +3,4 @@
 ^cran-comments\.md$
 ^License\.md$
 ^\.travis\.yml$
-^README\.Rmd$
+^README\.md$
