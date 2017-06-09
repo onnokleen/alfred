@@ -4,4 +4,11 @@
 * Windows via devtools::build_win() - x86_64-w64-mingw32
 
 ## R CMD check results
-There were no ERRORs, WARNINGs or NOTES. 
+There were no ERRORs or WARNINGs.
+
+### 1 Note
+
+Possibly mis-spelled words in DESCRIPTION:
+  API (8:42)
+  
+Comment: Negative
