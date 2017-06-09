@@ -6,7 +6,7 @@
 \usage{
 get_alfred_series(series_id, series_name = NULL,
     observation_start = NULL, observation_end = NULL,
-    real_time_start = NULL, real_time_end = NULL)
+    realtime_start = NULL, realtime_end = NULL)
 }
 \arguments{
 \item{series_id}{FRED times series ID.}
@@ -17,9 +17,9 @@ get_alfred_series(series_id, series_name = NULL,
 
 \item{observation_end}{Date of last observation in "yyyy-mm-dd" format. Default: Last observation available.}
 
-\item{real_time_start}{Date of first real time period in "yyyy-mm-dd" format. Default: First vintage date available.}
+\item{realtime_start}{Date of first real time period in "yyyy-mm-dd" format. Default: First vintage date available.}
 
-\item{real_time_end}{Date of last real time period in "yyyy-mm-dd" format. Default: Last vintage date available.}
+\item{realtime_end}{Date of last real time period in "yyyy-mm-dd" format. Default: Last vintage date available.}
 }
 \description{
 This function can pull time series from the ALFRED database: \url{https://alfred.stlouisfed.org}.
@@ -33,6 +33,6 @@ FRED time series IDs can be found on the respective site in ALFRED, e.g. \url{ht
     get_alfred_series("INDPRO", "indpro")
     }
 
-get_alfred_series("INDPRO", "indpro", real_time_start = "2008-10-31", real_time_end = "2009-10-31")
+get_alfred_series("INDPRO", "indpro", realtime_start = "2008-10-31", realtime_end = "2009-10-31")
 }
 \keyword{alfred}

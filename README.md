@@ -18,7 +18,7 @@ library(alfred)
 # Download industrial production index releases from March 2015 for 2013.
 get_alfred_series("INDPRO", "test",
                   observation_start = "2013-03-01", observation_end = "2013-03-30",
-                  real_time_start = "2015-02-02", real_time_end = "2015-02-02")
+                  realtime_start = "2015-02-02", realtime_end = "2015-02-02")
 # Wrapper for getting only most recent releases 
 get_fred_series("INDPRO", "indpro", observation_start = "2009-03-01", observation_end = "2009-03-01")
 ```
@@ -37,5 +37,6 @@ install_github("onnokleen/alfred")
 When using the FRED%copy; API, you are agreeing to be bound by the FRED® API Terms of Use, see https://research.stlouisfed.org/docs/api/terms_of_use.html.
 
 ## History
+- 10.06.2017: Bug fixes
 - 08.06.2017: First release on CRAN
 - 2017: First stable release on github.

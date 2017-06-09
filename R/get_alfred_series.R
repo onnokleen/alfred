@@ -7,14 +7,14 @@
 #' @param series_name Choose a name for the series column in output. Default: series_id.
 #' @param observation_start Date of first observation in "yyyy-mm-dd" format. Default: Earliest observation available.
 #' @param observation_end Date of last observation in "yyyy-mm-dd" format. Default: Last observation available.
-#' @param real_time_start Date of first real time period in "yyyy-mm-dd" format. Default: First vintage date available.
-#' @param real_time_end Date of last real time period in "yyyy-mm-dd" format. Default: Last vintage date available.
+#' @param realtime_start Date of first real time period in "yyyy-mm-dd" format. Default: First vintage date available.
+#' @param realtime_end Date of last real time period in "yyyy-mm-dd" format. Default: Last vintage date available.
 #' @details FRED time series IDs can be found on the respective site in ALFRED, e.g. \url{https://alfred.stlouisfed.org/series?seid=CPIAUCSL}.
 #' @keywords alfred
 #' @export get_alfred_series
 #' @usage get_alfred_series(series_id, series_name = NULL,
 #'     observation_start = NULL, observation_end = NULL,
-#'     real_time_start = NULL, real_time_end = NULL)
+#'     realtime_start = NULL, realtime_end = NULL)
 #' @importFrom xml2 read_xml
 #' @importFrom xml2 xml_children
 #' @importFrom xml2 xml_attrs
@@ -30,12 +30,12 @@
 #'     get_alfred_series("INDPRO", "indpro")
 #'     }
 #'
-#' @examples get_alfred_series("INDPRO", "indpro", real_time_start = "2008-10-31", real_time_end = "2009-10-31")
+#' @examples get_alfred_series("INDPRO", "indpro", realtime_start = "2008-10-31", realtime_end = "2009-10-31")
 
 get_alfred_series <-
   function(series_id, series_name = NULL,
            observation_start = NULL, observation_end = NULL,
-           real_time_start = NULL, real_time_end = NULL) {
+           realtime_start = NULL, realtime_end = NULL) {
 
   if (is.character(series_id) == FALSE) {
     stop("series_id is always in characters")
@@ -47,12 +47,12 @@ get_alfred_series <-
     series_name <- series_id
   }
 
-  if (is.null(real_time_start)  == TRUE) {
-    real_time_start <- "1776-07-04"
+  if (is.null(realtime_start)  == TRUE) {
+    realtime_start <- "1776-07-04"
   }
 
-  if (is.null(real_time_end) == TRUE) {
-    real_time_end <- "9999-12-31"
+  if (is.null(realtime_end) == TRUE) {
+    realtime_end <- "9999-12-31"
   }
 
   if (is.null(observation_start) == TRUE) {
@@ -67,9 +67,9 @@ get_alfred_series <-
     read_xml(paste0("https://api.stlouisfed.org/fred/series/observations?series_id=",
                     series_id,
                     "&realtime_start=",
-                    real_time_start,
+                    realtime_start,
                     "&realtime_end=",
-                    real_time_end,
+                    realtime_end,
                     "&output_type=2&observation_start=",
                     observation_start,
                     "&observation_end=",
