@@ -16,7 +16,8 @@ Imports:
     tibble,
     magrittr,
     lubridate,
-    xml2
+    xml2,
+    jsonlite
 URL: https://github.com/onnokleen/alfred/
 BugReports: https://github.com/onnokleen/alfred/issues
 Suggests: testthat,

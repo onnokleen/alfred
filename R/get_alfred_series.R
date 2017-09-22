@@ -15,17 +15,16 @@
 #' @usage get_alfred_series(series_id, series_name = NULL,
 #'     observation_start = NULL, observation_end = NULL,
 #'     realtime_start = NULL, realtime_end = NULL)
-#' @importFrom xml2 read_xml
-#' @importFrom xml2 xml_children
-#' @importFrom xml2 xml_attrs
 #' @importFrom tibble as_tibble
 #' @importFrom tidyr gather_
 #' @importFrom dplyr mutate_
 #' @importFrom dplyr filter_
+#' @importFrom dplyr mutate_if
 #' @importFrom lubridate as_date
 #' @importFrom magrittr %>%
 #' @importFrom dplyr bind_rows
 #' @importFrom stats na.omit
+#' @importFrom jsonlite fromJSON
 #' @examples \dontrun{
 #'     get_alfred_series("INDPRO", "indpro")
 #'     }
@@ -64,33 +63,29 @@ get_alfred_series <-
   }
 
   df_series <-
-    read_xml(paste0("https://api.stlouisfed.org/fred/series/observations?series_id=",
-                    series_id,
-                    "&realtime_start=",
-                    realtime_start,
-                    "&realtime_end=",
-                    realtime_end,
-                    "&output_type=2&observation_start=",
-                    observation_start,
-                    "&observation_end=",
-                    observation_end,
-                    "&api_key=98f9f5cad7212e246dc5955e9b744b24"))
-  df_series <-
-    lapply(xml_children(df_series), function(x) as.list(xml_attrs(x))) %>%
-    lapply(unlist) %>%
-    lapply(as.list) %>%
-    lapply(as_tibble) %>%
-    bind_rows()
-
-  # Reshape data and convert columns into preferred type
+    fromJSON(
+      paste0("https://api.stlouisfed.org/fred/series/observations?series_id=",
+             series_id,
+             "&realtime_start=",
+             realtime_start,
+             "&realtime_end=",
+             realtime_end,
+             "&output_type=2&observation_start=",
+             observation_start,
+             "&observation_end=",
+             observation_end,
+             "&api_key=98f9f5cad7212e246dc5955e9b744b24&file_type=json")
+    )$observations
   df_series <-
     df_series %>%
+    mutate_(date = ~as_date(df_series[["date"]])) %>%
     gather_("realtime_period", "name", setdiff(names(df_series), "date")) %>%
     na.omit() %>%
-    mutate_(realtime_period = ~paste(substr(realtime_period, start = length_series_id + 2, stop = length_series_id + 5),
-                                     substr(realtime_period, start = length_series_id + 6, stop = length_series_id + 7),
-                                     substr(realtime_period, start = length_series_id + 8, stop = length_series_id + 9),
-                                     sep = "-")) %>%
+    mutate_(realtime_period =
+              ~paste(substr(realtime_period, start = length_series_id + 2, stop = length_series_id + 5),
+                     substr(realtime_period, start = length_series_id + 6, stop = length_series_id + 7),
+                     substr(realtime_period, start = length_series_id + 8, stop = length_series_id + 9),
+                     sep = "-")) %>%
     mutate_(realtime_period = ~as_date(realtime_period),
             date = ~as_date(date),
             name = ~as.numeric(name)) %>%
@@ -113,9 +108,6 @@ get_alfred_series <-
 #' @usage get_fred_series(series_id, series_name = NULL,
 #'     observation_start = NULL, observation_end = NULL)
 #' @export get_fred_series
-#' @importFrom xml2 read_xml
-#' @importFrom xml2 xml_children
-#' @importFrom xml2 xml_attrs
 #' @importFrom tibble as_tibble
 #' @importFrom dplyr mutate_
 #' @importFrom lubridate as_date
@@ -124,6 +116,8 @@ get_alfred_series <-
 #' @examples get_fred_series("INDPRO", "indpro")
 get_fred_series <- function(series_id, series_name = NULL,
                             observation_start = NULL, observation_end = NULL) {
+
+
   length_series_id <- nchar(series_id)
 
   if (is.character(series_id) == FALSE) {
@@ -143,23 +137,17 @@ get_fred_series <- function(series_id, series_name = NULL,
   }
 
   df_series <-
-    read_xml(paste0("https://api.stlouisfed.org/fred/series/observations?series_id=",
-                    series_id,
-                    "&output_type=2&observation_start=",
-                    observation_start,
-                    "&observation_end=",
-                    observation_end,
-                    "&api_key=98f9f5cad7212e246dc5955e9b744b24"))
-
-  suppressMessages(
-    df_series <-
-      lapply(xml_children(df_series), function(x) as.list(xml_attrs(x))) %>%
-      lapply(unlist) %>%
-      lapply(as.list) %>%
-      lapply(as_tibble) %>%
-      bind_rows() %>%
-      mutate_(date = ~as_date(date))
-  )
+    fromJSON(
+      paste0("https://api.stlouisfed.org/fred/series/observations?series_id=",
+             series_id,
+             "&observation_start=",
+             observation_start,
+             "&observation_end=",
+             observation_end,
+             "&output_type=2",
+             "&api_key=98f9f5cad7212e246dc5955e9b744b24&file_type=json")
+    )$observations %>%
+    mutate_(date = ~as_date(date))
 
   colnames(df_series)[!(colnames(df_series) %in% "date")] <- series_name
   df_series[, 2] <- as.numeric(unlist(df_series[, 2]))
