@@ -40,6 +40,6 @@ install_github("onnokleen/alfred")
 When using the FRED%copy; API, you are agreeing to be bound by the FRED® API Terms of Use, see https://research.stlouisfed.org/docs/api/terms_of_use.html.
 
 ## History
-- 23.09.2017: performance improvements
+- 23.09.2017: Performance improvements
 - 10.06.2017: Bug fixes
 - 08.06.2017: First release on CRAN
