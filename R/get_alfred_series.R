@@ -42,7 +42,7 @@ get_alfred_series <-
 
   length_series_id <- nchar(series_id)
 
-  if (is.null(series_id) == TRUE ) {
+  if (is.null(series_name) == TRUE ) {
     series_name <- series_id
   }
 
