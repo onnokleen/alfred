@@ -124,7 +124,7 @@ get_fred_series <- function(series_id, series_name = NULL,
     stop("series_id is always in characters")
   }
 
-  if (is.null(series_id) == TRUE ) {
+  if (is.null(series_name) == TRUE ) {
     series_name <- series_id
   }
 
