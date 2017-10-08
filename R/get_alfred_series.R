@@ -63,33 +63,39 @@ get_alfred_series <-
   }
 
   df_series <-
-    fromJSON(
-      paste0("https://api.stlouisfed.org/fred/series/observations?series_id=",
-             series_id,
-             "&realtime_start=",
-             realtime_start,
-             "&realtime_end=",
-             realtime_end,
-             "&output_type=2&observation_start=",
-             observation_start,
-             "&observation_end=",
-             observation_end,
-             "&api_key=98f9f5cad7212e246dc5955e9b744b24&file_type=json")
-    )$observations
-  df_series <-
-    df_series %>%
-    mutate_(date = ~as_date(df_series[["date"]])) %>%
-    gather_("realtime_period", "name", setdiff(names(df_series), "date")) %>%
-    na.omit() %>%
-    mutate_(realtime_period =
-              ~paste(substr(realtime_period, start = length_series_id + 2, stop = length_series_id + 5),
-                     substr(realtime_period, start = length_series_id + 6, stop = length_series_id + 7),
-                     substr(realtime_period, start = length_series_id + 8, stop = length_series_id + 9),
-                     sep = "-")) %>%
-    mutate_(realtime_period = ~as_date(realtime_period),
-            date = ~as_date(date),
-            name = ~as.numeric(name)) %>%
-    filter_(.dots = paste0("realtime_period", "!= ", "9999-12-31"))
+    try({
+      df_series <-
+        fromJSON(
+          paste0("https://api.stlouisfed.org/fred/series/observations?series_id=",
+                 series_id,
+                 "&realtime_start=",
+                 realtime_start,
+                 "&realtime_end=",
+                 realtime_end,
+                 "&output_type=2&observation_start=",
+                 observation_start,
+                 "&observation_end=",
+                 observation_end,
+                 "&api_key=98f9f5cad7212e246dc5955e9b744b24&file_type=json")
+        )$observations
+      df_series %>%
+        mutate_(date = ~as_date(df_series[["date"]])) %>%
+        gather_("realtime_period", "name", setdiff(names(df_series), "date")) %>%
+        na.omit() %>%
+        mutate_(realtime_period =
+                  ~paste(substr(realtime_period, start = length_series_id + 2, stop = length_series_id + 5),
+                         substr(realtime_period, start = length_series_id + 6, stop = length_series_id + 7),
+                         substr(realtime_period, start = length_series_id + 8, stop = length_series_id + 9),
+                         sep = "-")) %>%
+        mutate_(realtime_period = ~as_date(realtime_period),
+                date = ~as_date(date),
+                name = ~as.numeric(name)) %>%
+        filter_(.dots = paste0("realtime_period", "!= ", "9999-12-31"))
+    }, silent = TRUE)
+
+  if (class(df_series) == "try-error") {
+    stop("Download of specified time-series failed - did you misspell the identifier?")
+  }
 
   colnames(df_series)[!colnames(df_series) %in% c("date", "realtime_period")] <- series_name
 
@@ -137,17 +143,23 @@ get_fred_series <- function(series_id, series_name = NULL,
   }
 
   df_series <-
-    fromJSON(
-      paste0("https://api.stlouisfed.org/fred/series/observations?series_id=",
-             series_id,
-             "&observation_start=",
-             observation_start,
-             "&observation_end=",
-             observation_end,
-             "&output_type=2",
-             "&api_key=98f9f5cad7212e246dc5955e9b744b24&file_type=json")
-    )$observations %>%
-    mutate_(date = ~as_date(date))
+    try({
+      fromJSON(
+        paste0("https://api.stlouisfed.org/fred/series/observations?series_id=",
+               series_id,
+               "&observation_start=",
+               observation_start,
+               "&observation_end=",
+               observation_end,
+               "&output_type=2",
+               "&api_key=98f9f5cad7212e246dc5955e9b744b24&file_type=json")
+      )$observations %>%
+        mutate_(date = ~as_date(date))
+    }, silent = TRUE)
+
+  if (class(df_series) == "try-error") {
+    stop("Download of specified time-series failed - did you misspell the identifier?")
+  }
 
   colnames(df_series)[!(colnames(df_series) %in% "date")] <- series_name
   df_series[, 2] <- as.numeric(unlist(df_series[, 2]))
