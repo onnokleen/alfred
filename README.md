@@ -11,7 +11,7 @@ An R-package for obtaining vintage data from ALFRED: https://alfred.stlouisfed.o
   - Contrary to similar R-packages, you don't have to get an API-key yourself.
   
 ## Usage
-A more detailed example can be found in my vignette: https://cran.r-project.org/web/packages/alfred/vignettes/alfred.pdf
+A more detailed example can be found in my vignette: https://cran.r-project.org/web/packages/alfred/vignettes/alfred.html
 
 ```r
 library(alfred)
