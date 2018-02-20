@@ -32,14 +32,12 @@ library(devtools)
 install_github("onnokleen/alfred")
 ```
 
-### ToDo
-- Better error warning in case of non-existing FRED identifier
-
 ### Terms of use
 
-When using the FRED%copy; API, you are agreeing to be bound by the FRED® API Terms of Use, see https://research.stlouisfed.org/docs/api/terms_of_use.html.
+When using the FRED%copy; API, you are agreeing to be bound by the FRED&copy API Terms of Use, see https://research.stlouisfed.org/docs/api/terms_of_use.html.
 
 ## History
+- 20.02.2018: Re-added vignette
 - 08.10.2017: Bug-fixes
 - 23.09.2017: Performance improvements
 - 10.06.2017: Bug fixes
