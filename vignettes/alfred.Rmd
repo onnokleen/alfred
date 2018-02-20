@@ -34,7 +34,7 @@ df <- get_fred_series("INDPRO", "indpro")
 The output is a data frame
 
 ```{r}
-df
+head(df)
 ```
 
 This can be readily used, i.e. for plotting
@@ -54,7 +54,7 @@ df_vintages <-
   get_alfred_series("GDPC1", "rgdp",
                     observation_start = "2007-05-31",
                     realtime_start = "2008-05-31", realtime_end = "2009-03-30")
-df_vintages
+head(df_vintages)
 ```
 
 Because of its output being a tidy data frame, it is easy to visualise revisions by

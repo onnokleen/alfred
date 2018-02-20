@@ -1,0 +1,6 @@
+- 20.02.2018 v0.1.5 Re-added vignette
+- 08.10.2017 v0.1.4 Bug-fix in error-handling
+- 23.09.2017 v0.1.3 Faster download due to using jsonlite insteal of xml2
+- 10.06.2017 v0.1.2 Inconsistent use of real time und realtime fixed
+- 09.06.2017 v0.1.1 Updated documentation etc.
+- 06.06.2017 v0.1.0 Initial submission to CRAN

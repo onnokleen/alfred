@@ -28,7 +28,6 @@
 #' @examples \dontrun{
 #'     get_alfred_series("INDPRO", "indpro")
 #'     }
-#'
 #' @examples get_alfred_series("INDPRO", "indpro", realtime_start = "2008-10-31", realtime_end = "2009-10-31")
 
 get_alfred_series <-
