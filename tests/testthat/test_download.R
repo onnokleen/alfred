@@ -31,14 +31,14 @@ test_that("Downloaded data is as expected", {
                     observation_start = "2009-03-01", observation_end = "2009-03-01"),
     data.frame(
       date = as.Date("2009-03-01"),
-      test = 89.1913)
+      test = 89.0085)
   )
   expect_equal(
     dplyr::filter(get_fred_series("INDPRO", "test"),
                   date == "2009-03-01"),
     data.frame(
       date = as.Date("2009-03-01"),
-      test = 89.1913)
+      test = 89.0085)
   )
   expect_error(
     get_fred_series(1231232, "test",

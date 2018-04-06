@@ -1,5 +1,5 @@
 ### Test environments
-* local OS X install, R 3.4.0
+* local OS X install, R 3.4.4
 * Ubuntu 12.04 via travis-ci
 * Windows via devtools::build_win() - x86_64-w64-mingw32
 
