@@ -35,7 +35,7 @@ install_github("onnokleen/alfred")
 
 ### Terms of use
 
-When using the FRED%copy; API, you are agreeing to be bound by the FRED&copy API Terms of Use, see https://research.stlouisfed.org/docs/api/terms_of_use.html.
+When using the FRED&copy; API, you are agreeing to be bound by the FRED&copy; API Terms of Use, see https://research.stlouisfed.org/docs/api/terms_of_use.html.
 
 ## History
 - 06.03.2018: Test fixed
