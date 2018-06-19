@@ -2,6 +2,7 @@
 [![Travis-CI Build Status](https://travis-ci.org/onnokleen/alfred.svg?branch=master)](https://travis-ci.org/onnokleen/alfred)
 [![Coverage Status](https://img.shields.io/coveralls/onnokleen/alfred.svg)](https://coveralls.io/r/onnokleen/alfred?branch=master)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Downloads](https://cranlogs.r-pkg.org/badges/alfred)](https://cranlogs.r-pkg.org/badges/alfred)
 # alfred
 An R-package for obtaining vintage data from ALFRED: https://alfred.stlouisfed.org. Note that this product uses the FRED&copy; API but is not endorsed or certified by the Federal Reserve Bank of St. Louis.
 
