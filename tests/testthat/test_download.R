@@ -26,20 +26,6 @@ test_that("Downloaded data is as expected", {
       realtime_period = as.Date("2015-02-18"),
       test = 85.6157)
   )
-  expect_equal(
-    get_fred_series("INDPRO", "test",
-                    observation_start = "2009-03-01", observation_end = "2009-03-01"),
-    data.frame(
-      date = as.Date("2009-03-01"),
-      test = 89.0085)
-  )
-  expect_equal(
-    dplyr::filter(get_fred_series("INDPRO", "test"),
-                  date == "2009-03-01"),
-    data.frame(
-      date = as.Date("2009-03-01"),
-      test = 89.0085)
-  )
   expect_error(
     get_fred_series(1231232, "test",
                     observation_start = "2009-03-01", observation_end = "2009-03-01")
