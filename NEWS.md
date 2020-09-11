@@ -1,3 +1,4 @@
+- 11.09.2020 v0.1.8 Minor fix for future compatibility with dplyr
 - 01.04.2019 v0.1.7 Test fixed
 - 06.03.2018 v0.1.6 Test fixed
 - 20.02.2018 v0.1.5 Re-added vignette

@@ -77,24 +77,27 @@ get_alfred_series <-
                  observation_end,
                  "&api_key=98f9f5cad7212e246dc5955e9b744b24&file_type=json")
         )$observations
-      df_series %>%
-        mutate_(date = ~as_date(df_series[["date"]])) %>%
-        gather_("realtime_period", "name", setdiff(names(df_series), "date")) %>%
-        na.omit() %>%
-        mutate_(realtime_period =
-                  ~paste(substr(realtime_period, start = length_series_id + 2, stop = length_series_id + 5),
-                         substr(realtime_period, start = length_series_id + 6, stop = length_series_id + 7),
-                         substr(realtime_period, start = length_series_id + 8, stop = length_series_id + 9),
-                         sep = "-")) %>%
-        mutate_(realtime_period = ~as_date(realtime_period),
-                date = ~as_date(date),
-                name = ~as.numeric(name)) %>%
-        filter_(.dots = paste0("realtime_period", "!= ", "9999-12-31"))
     }, silent = TRUE)
 
   if (class(df_series) == "try-error") {
     stop("Download of specified time-series failed - did you misspell the identifier?")
   }
+
+  df_series <-
+    df_series %>%
+    mutate(date = as_date(df_series[["date"]])) %>%
+    gather_("realtime_period", "name", setdiff(names(df_series), "date")) %>%
+    na.omit() %>%
+    mutate(realtime_period =
+              paste(substr(.data$realtime_period, start = length_series_id + 2, stop = length_series_id + 5),
+                     substr(.data$realtime_period, start = length_series_id + 6, stop = length_series_id + 7),
+                     substr(.data$realtime_period, start = length_series_id + 8, stop = length_series_id + 9),
+                     sep = "-")) %>%
+    mutate(realtime_period = as_date(.data$realtime_period),
+            date = as_date(.data$date),
+            name = as.numeric(.data$name))
+
+  df_series <- df_series[df_series$realtime_period != "9999-12-31",]
 
   colnames(df_series)[!colnames(df_series) %in% c("date", "realtime_period")] <- series_name
 
@@ -114,10 +117,11 @@ get_alfred_series <-
 #'     observation_start = NULL, observation_end = NULL)
 #' @export get_fred_series
 #' @importFrom tibble as_tibble
-#' @importFrom dplyr mutate_
+#' @importFrom dplyr mutate
 #' @importFrom lubridate as_date
 #' @importFrom magrittr %>%
 #' @importFrom dplyr bind_rows
+#' @importFrom rlang .data
 #' @examples get_fred_series("INDPRO", "indpro")
 get_fred_series <- function(series_id, series_name = NULL,
                             observation_start = NULL, observation_end = NULL) {
@@ -152,13 +156,16 @@ get_fred_series <- function(series_id, series_name = NULL,
                observation_end,
                "&output_type=2",
                "&api_key=98f9f5cad7212e246dc5955e9b744b24&file_type=json")
-      )$observations %>%
-        mutate_(date = ~as_date(date))
+      )$observations
     }, silent = TRUE)
 
   if (class(df_series) == "try-error") {
     stop("Download of specified time-series failed - did you misspell the identifier?")
   }
+
+  df_series <-
+    df_series %>%
+    mutate(date = as_date(.data$date))
 
   colnames(df_series)[!(colnames(df_series) %in% "date")] <- series_name
   df_series[, 2] <- as.numeric(unlist(df_series[, 2]))
