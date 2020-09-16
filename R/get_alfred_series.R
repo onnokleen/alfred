@@ -41,23 +41,23 @@ get_alfred_series <-
 
   length_series_id <- nchar(series_id)
 
-  if (is.null(series_name) == TRUE ) {
+  if (is.null(series_name)) {
     series_name <- series_id
   }
 
-  if (is.null(realtime_start)  == TRUE) {
+  if (is.null(realtime_start)) {
     realtime_start <- "1776-07-04"
   }
 
-  if (is.null(realtime_end) == TRUE) {
+  if (is.null(realtime_end)) {
     realtime_end <- "9999-12-31"
   }
 
-  if (is.null(observation_start) == TRUE) {
+  if (is.null(observation_start)) {
     observation_start <- "1776-07-04"
   }
 
-  if (is.null(observation_end) == TRUE) {
+  if (is.null(observation_end)) {
     observation_end <- "9999-12-31"
   }
 
@@ -129,19 +129,19 @@ get_fred_series <- function(series_id, series_name = NULL,
 
   length_series_id <- nchar(series_id)
 
-  if (is.character(series_id) == FALSE) {
+  if (!is.character(series_id)) {
     stop("series_id is always in characters")
   }
 
-  if (is.null(series_name) == TRUE ) {
+  if (is.null(series_name)) {
     series_name <- series_id
   }
 
-  if (is.null(observation_start) == TRUE) {
+  if (is.null(observation_start)) {
     observation_start <- "1776-07-04"
   }
 
-  if (is.null(observation_end) == TRUE) {
+  if (is.null(observation_end)) {
     observation_end <- "9999-12-31"
   }
 
