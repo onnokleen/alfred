@@ -25,6 +25,7 @@
 #' @importFrom dplyr bind_rows
 #' @importFrom stats na.omit
 #' @importFrom jsonlite fromJSON
+#' @importFrom curl curl
 #' @examples \dontrun{
 #'     get_alfred_series("INDPRO", "indpro")
 #'     }
@@ -80,7 +81,9 @@ get_alfred_series <-
     }, silent = TRUE)
 
   if (class(df_series) == "try-error") {
-    stop("Download of specified time-series failed - did you misspell the identifier?")
+    print("Download of specified time-series failed - did you misspell the identifier?")
+    print(df_series)
+    return(NULL)
   }
 
   df_series <-
@@ -160,7 +163,9 @@ get_fred_series <- function(series_id, series_name = NULL,
     }, silent = TRUE)
 
   if (class(df_series) == "try-error") {
-    stop("Download of specified time-series failed - did you misspell the identifier?")
+    print("Download of specified time-series failed - did you misspell the identifier?")
+    print(df_series)
+    return(NULL)
   }
 
   df_series <-

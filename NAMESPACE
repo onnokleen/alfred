@@ -2,6 +2,7 @@
 
 export(get_alfred_series)
 export(get_fred_series)
+importFrom(curl,curl)
 importFrom(dplyr,bind_rows)
 importFrom(dplyr,filter_)
 importFrom(dplyr,mutate)
