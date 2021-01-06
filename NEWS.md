@@ -1,4 +1,4 @@
-- 06.01.2021 v0.1.10 Minor fix for handling of failed downloads
+- 06.01.2021 v0.1.10 Minor fix for handling of failed downloads, tests are skipped without internet connection
 - 27.12.2020 v0.1.9 Minor fix for curl dependency on macOS
 - 11.09.2020 v0.1.8 Minor fix for future compatibility with dplyr
 - 01.04.2019 v0.1.7 Test fixed
