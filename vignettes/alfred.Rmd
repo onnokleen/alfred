@@ -57,7 +57,7 @@ df_vintages <-
 head(df_vintages)
 ```
 
-Because of its output being a tidy data frame, it is easy to visualise revisions by
+Because of its output being a tidy data frame, it is easy to visualize revisions by
 
 ```{r, fig.show = "hold", fig.width = 6}
 library(ggplot2)

@@ -1,5 +1,5 @@
 test_that("Downloaded data is as expected", {
-  skip_if_offline()
+  skip_on_cran()
   expect_equal(
     get_alfred_series("INDPRO", "test",
                       observation_start = "2013-03-01", observation_end = "2013-03-01",

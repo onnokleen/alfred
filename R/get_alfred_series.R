@@ -18,7 +18,6 @@
 #' @importFrom tibble as_tibble
 #' @importFrom tidyr gather_
 #' @importFrom dplyr mutate_
-#' @importFrom dplyr filter_
 #' @importFrom dplyr mutate_if
 #' @importFrom lubridate as_date
 #' @importFrom magrittr %>%
