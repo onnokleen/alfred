@@ -9,12 +9,11 @@
 #' @param observation_end Date of last observation in "yyyy-mm-dd" format. Default: Last observation available.
 #' @param realtime_start Date of first real time period in "yyyy-mm-dd" format. Default: First vintage date available.
 #' @param realtime_end Date of last real time period in "yyyy-mm-dd" format. Default: Last vintage date available.
+#' @param api_key You can supply your own apikey obtained via \url{https://research.stlouisfed.org/useraccount/login/secure/}
+#' if you want to run a large batch of requests. Otherwise you might run into query limits of the API.
 #' @details FRED time series IDs can be found on the respective site in ALFRED, e.g. \url{https://alfred.stlouisfed.org/series?seid=CPIAUCSL}.
 #' @keywords alfred
 #' @export get_alfred_series
-#' @usage get_alfred_series(series_id, series_name = NULL,
-#'     observation_start = NULL, observation_end = NULL,
-#'     realtime_start = NULL, realtime_end = NULL)
 #' @importFrom tibble as_tibble
 #' @importFrom tidyr gather_
 #' @importFrom dplyr mutate_
@@ -24,7 +23,8 @@
 #' @importFrom dplyr bind_rows
 #' @importFrom stats na.omit
 #' @importFrom jsonlite fromJSON
-#' @importFrom curl curl
+#' @importFrom httr GET
+#' @importFrom httr content
 #' @examples \dontrun{
 #'     get_alfred_series("INDPRO", "indpro")
 #'     }
@@ -33,7 +33,7 @@
 get_alfred_series <-
   function(series_id, series_name = NULL,
            observation_start = NULL, observation_end = NULL,
-           realtime_start = NULL, realtime_end = NULL) {
+           realtime_start = NULL, realtime_end = NULL, api_key = NULL) {
 
   if (is.character(series_id) == FALSE) {
     stop("series_id is always in characters")
@@ -61,29 +61,39 @@ get_alfred_series <-
     observation_end <- "9999-12-31"
   }
 
-  df_series <-
+  if (is.null(api_key)) {
+    api_key <- "98f9f5cad7212e246dc5955e9b744b24"
+  }
+
+  json_api_call <-
     try({
-      df_series <-
-        fromJSON(
-          paste0("https://api.stlouisfed.org/fred/series/observations?series_id=",
-                 series_id,
-                 "&realtime_start=",
-                 realtime_start,
-                 "&realtime_end=",
-                 realtime_end,
-                 "&output_type=2&observation_start=",
-                 observation_start,
-                 "&observation_end=",
-                 observation_end,
-                 "&api_key=98f9f5cad7212e246dc5955e9b744b24&file_type=json")
-        )$observations
+        content(GET( paste0("https://api.stlouisfed.org/fred/series/observations?series_id=",
+                            series_id,
+                            "&realtime_start=",
+                            realtime_start,
+                            "&realtime_end=",
+                            realtime_end,
+                            "&output_type=2&observation_start=",
+                            observation_start,
+                            "&observation_end=",
+                            observation_end,
+                            "&api_key=",api_key,"&file_type=json")),
+                as = "text")
     }, silent = TRUE)
 
-  if (class(df_series) == "try-error") {
-    print("Download of specified time-series failed - did you misspell the identifier?")
-    print(df_series)
+
+  if ("error_code" %in% names(json_api_call)) {
+    if (json_api_call$error_code == 429) {
+      warning("Too many request have been made to the FRED server via the package's API key.\n Please supply your own API key via the optional argument api_key.")
+    }
+    if (json_api_call$error_code == 429) {
+      warning("Download of specified time-series failed - did you misspell the identifier?")
+    }
     return(NULL)
   }
+
+  df_series <-
+    jsonlite::fromJSON(json_api_call, simplifyDataFrame = TRUE)$observations
 
   df_series <-
     df_series %>%
@@ -114,9 +124,9 @@ get_alfred_series <-
 #' @param series_name Choose a name for the series column in output. Default: series_id.
 #' @param observation_start Date of first observation in "yyyy-mm-dd" format. Default: Earliest observation available.
 #' @param observation_end Date of last observation in "yyyy-mm-dd" format. Default: Last observation available.
+#' @param api_key You can supply your own apikey obtained via \url{https://research.stlouisfed.org/useraccount/login/secure/}
+#' if you want to run a large batch of requests. Otherwise you might run into query limits of the API.
 #' @keywords fred
-#' @usage get_fred_series(series_id, series_name = NULL,
-#'     observation_start = NULL, observation_end = NULL)
 #' @export get_fred_series
 #' @importFrom tibble as_tibble
 #' @importFrom dplyr mutate
@@ -126,7 +136,8 @@ get_alfred_series <-
 #' @importFrom rlang .data
 #' @examples get_fred_series("INDPRO", "indpro")
 get_fred_series <- function(series_id, series_name = NULL,
-                            observation_start = NULL, observation_end = NULL) {
+                            observation_start = NULL, observation_end = NULL,
+                            api_key = NULL) {
 
 
   length_series_id <- nchar(series_id)
@@ -147,28 +158,35 @@ get_fred_series <- function(series_id, series_name = NULL,
     observation_end <- "9999-12-31"
   }
 
-  df_series <-
+  if (is.null(api_key)) {
+    api_key <- "98f9f5cad7212e246dc5955e9b744b24"
+  }
+
+  json_api_call <-
     try({
-      fromJSON(
-        paste0("https://api.stlouisfed.org/fred/series/observations?series_id=",
+      content(GET(paste0("https://api.stlouisfed.org/fred/series/observations?series_id=",
                series_id,
                "&observation_start=",
                observation_start,
                "&observation_end=",
                observation_end,
                "&output_type=2",
-               "&api_key=98f9f5cad7212e246dc5955e9b744b24&file_type=json")
-      )$observations
+               "&api_key=",api_key,"&file_type=json")),
+               as = "text")
     }, silent = TRUE)
 
-  if (class(df_series) == "try-error") {
-    print("Download of specified time-series failed - did you misspell the identifier?")
-    print(df_series)
+  if ("error_code"  %in% names(json_api_call)) {
+    if (json_api_call$error_code == 429) {
+      warning("Too many request have been made to the FRED server via the package's API key.\n Please supply your own API key via the optional argument api_key.")
+    }
+    if (json_api_call$error_code == 429) {
+      warning("Download of specified time-series failed - did you misspell the identifier?")
+    }
     return(NULL)
   }
 
   df_series <-
-    df_series %>%
+    jsonlite::fromJSON(json_api_call, simplifyDataFrame = TRUE)$observations %>%
     mutate(date = as_date(.data$date))
 
   colnames(df_series)[!(colnames(df_series) %in% "date")] <- series_name

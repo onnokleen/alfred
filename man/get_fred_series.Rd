@@ -4,8 +4,13 @@
 \alias{get_fred_series}
 \title{Accessing FRED}
 \usage{
-get_fred_series(series_id, series_name = NULL,
-    observation_start = NULL, observation_end = NULL)
+get_fred_series(
+  series_id,
+  series_name = NULL,
+  observation_start = NULL,
+  observation_end = NULL,
+  api_key = NULL
+)
 }
 \arguments{
 \item{series_id}{FRED times series ID.}
@@ -15,6 +20,9 @@ get_fred_series(series_id, series_name = NULL,
 \item{observation_start}{Date of first observation in "yyyy-mm-dd" format. Default: Earliest observation available.}
 
 \item{observation_end}{Date of last observation in "yyyy-mm-dd" format. Default: Last observation available.}
+
+\item{api_key}{You can supply your own apikey obtained via \url{https://research.stlouisfed.org/useraccount/login/secure/}
+if you want to run a large batch of requests. Otherwise you might run into query limits of the API.}
 }
 \description{
 This function can pull time series from the FRED database: \url{https://fred.stlouisfed.org}.

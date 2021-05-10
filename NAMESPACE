@@ -2,11 +2,12 @@
 
 export(get_alfred_series)
 export(get_fred_series)
-importFrom(curl,curl)
 importFrom(dplyr,bind_rows)
 importFrom(dplyr,mutate)
 importFrom(dplyr,mutate_)
 importFrom(dplyr,mutate_if)
+importFrom(httr,GET)
+importFrom(httr,content)
 importFrom(jsonlite,fromJSON)
 importFrom(lubridate,as_date)
 importFrom(magrittr,"%>%")

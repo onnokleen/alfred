@@ -4,9 +4,15 @@
 \alias{get_alfred_series}
 \title{Accessing ALFRED}
 \usage{
-get_alfred_series(series_id, series_name = NULL,
-    observation_start = NULL, observation_end = NULL,
-    realtime_start = NULL, realtime_end = NULL)
+get_alfred_series(
+  series_id,
+  series_name = NULL,
+  observation_start = NULL,
+  observation_end = NULL,
+  realtime_start = NULL,
+  realtime_end = NULL,
+  api_key = NULL
+)
 }
 \arguments{
 \item{series_id}{FRED times series ID.}
@@ -20,6 +26,9 @@ get_alfred_series(series_id, series_name = NULL,
 \item{realtime_start}{Date of first real time period in "yyyy-mm-dd" format. Default: First vintage date available.}
 
 \item{realtime_end}{Date of last real time period in "yyyy-mm-dd" format. Default: Last vintage date available.}
+
+\item{api_key}{You can supply your own apikey obtained via \url{https://research.stlouisfed.org/useraccount/login/secure/}
+if you want to run a large batch of requests. Otherwise you might run into query limits of the API.}
 }
 \description{
 This function can pull time series from the ALFRED database: \url{https://alfred.stlouisfed.org}.
