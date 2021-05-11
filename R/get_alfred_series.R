@@ -28,7 +28,10 @@
 #' @examples \dontrun{
 #'     get_alfred_series("INDPRO", "indpro")
 #'     }
-#' @examples get_alfred_series("INDPRO", "indpro", realtime_start = "2008-10-31", realtime_end = "2009-10-31")
+#' @examples \dontrun{
+#'     get_alfred_series("INDPRO", "indpro",
+#'     realtime_start = "2008-10-31", realtime_end = "2009-10-31")
+#'     }
 
 get_alfred_series <-
   function(series_id, series_name = NULL,
@@ -134,7 +137,9 @@ get_alfred_series <-
 #' @importFrom magrittr %>%
 #' @importFrom dplyr bind_rows
 #' @importFrom rlang .data
-#' @examples get_fred_series("INDPRO", "indpro")
+#' @examples \dontrun{
+#'     get_fred_series("INDPRO", "indpro")
+#'     }
 get_fred_series <- function(series_id, series_name = NULL,
                             observation_start = NULL, observation_end = NULL,
                             api_key = NULL) {

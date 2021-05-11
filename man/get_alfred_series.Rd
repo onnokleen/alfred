@@ -41,6 +41,9 @@ FRED time series IDs can be found on the respective site in ALFRED, e.g. \url{ht
 \dontrun{
     get_alfred_series("INDPRO", "indpro")
     }
-get_alfred_series("INDPRO", "indpro", realtime_start = "2008-10-31", realtime_end = "2009-10-31")
+\dontrun{
+    get_alfred_series("INDPRO", "indpro",
+    realtime_start = "2008-10-31", realtime_end = "2009-10-31")
+    }
 }
 \keyword{alfred}

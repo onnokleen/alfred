@@ -28,6 +28,8 @@ if you want to run a large batch of requests. Otherwise you might run into query
 This function can pull time series from the FRED database: \url{https://fred.stlouisfed.org}.
 }
 \examples{
-get_fred_series("INDPRO", "indpro")
+\dontrun{
+    get_fred_series("INDPRO", "indpro")
+    }
 }
 \keyword{fred}
