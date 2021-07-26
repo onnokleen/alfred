@@ -85,11 +85,11 @@ get_alfred_series <-
     }, silent = TRUE)
 
 
-  if ("error_code" %in% names(json_api_call)) {
-    if (json_api_call$error_code == 429) {
+  if (grepl("error_code", json_api_call, fixed = TRUE)) {
+    if (grepl("429", json_api_call, fixed = TRUE)) {
       warning("Too many request have been made to the FRED server via the package's API key.\n Please supply your own API key via the optional argument api_key.")
     }
-    if (json_api_call$error_code == 429) {
+    if (grepl("400", json_api_call, fixed = TRUE)) {
       warning("Download of specified time-series failed - did you misspell the identifier?")
     }
     return(NULL)
