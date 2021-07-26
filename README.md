@@ -1,5 +1,5 @@
 [![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/alfred)](https://cran.r-project.org/package=alfred)
-[![Travis-CI Build Status](https://travis-ci.com/onnokleen/alfred.svg?branch=master)](https://travis-ci.org/onnokleen/alfred)
+[![Travis-CI Build Status](https://travis-ci.org/onnokleen/alfred.svg?branch=master)](https://travis-ci.org/onnokleen/alfred)
 [![Coverage Status](https://img.shields.io/coveralls/onnokleen/alfred.svg)](https://coveralls.io/r/onnokleen/alfred?branch=master)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Downloads](https://cranlogs.r-pkg.org/badges/alfred)](https://cranlogs.r-pkg.org/badges/alfred)
