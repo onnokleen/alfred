@@ -1,5 +1,5 @@
 [![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/alfred)](https://cran.r-project.org/package=alfred)
-[![Travis-CI Build Status](https://travis-ci.org/onnokleen/alfred.svg?branch=master)](https://travis-ci.org/onnokleen/alfred)
+[![Travis-CI Build Status](https://travis-ci.com/onnokleen/alfred.svg?branch=master)](https://travis-ci.org/onnokleen/alfred)
 [![Coverage Status](https://img.shields.io/coveralls/onnokleen/alfred.svg)](https://coveralls.io/r/onnokleen/alfred?branch=master)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Downloads](https://cranlogs.r-pkg.org/badges/alfred)](https://cranlogs.r-pkg.org/badges/alfred)
@@ -38,6 +38,12 @@ install_github("onnokleen/alfred")
 When using the FRED&copy; API, you are agreeing to be bound by the FRED&copy; API Terms of Use, see https://research.stlouisfed.org/docs/api/terms_of_use.html.
 
 ## History
+- 26.07.2021: Fixed error messages
+- 19.05.2021: Added the option to supply your own API key
+             Building the vignette is skipped if there is no internet
+- 19.01.2021: Minor fix for handling of failed downloads if connection refused by API
+- 06.01.2021: Minor fix for handling of failed downloads, tests are skipped without internet connection
+- 27.12.2020: Minor fix for curl dependency on macOS
 - 11.09.2020: Minor fix for future compatibility with dplyr
 - 01.04.2019: Test fixed
 - 06.03.2018: Test fixed
