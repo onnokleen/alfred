@@ -1,3 +1,4 @@
+- 17.03.2023 v0.2.1 Fixed deprecated tidyr verbs
 - 26.07.2021 v0.2.0 Fixed error messages
 - 19.05.2021 V0.1.12 Added the option to supply your own API key
                      Building the vignette is skipped if there is no internet

@@ -15,11 +15,12 @@
 #' @keywords alfred
 #' @export get_alfred_series
 #' @importFrom tibble as_tibble
-#' @importFrom tidyr gather_
 #' @importFrom dplyr mutate_
 #' @importFrom dplyr mutate_if
 #' @importFrom lubridate as_date
 #' @importFrom magrittr %>%
+#' @importFrom tidyr gather
+#' @importFrom tidyselect contains
 #' @importFrom dplyr bind_rows
 #' @importFrom stats na.omit
 #' @importFrom jsonlite fromJSON
@@ -101,7 +102,7 @@ get_alfred_series <-
   df_series <-
     df_series %>%
     mutate(date = as_date(df_series[["date"]])) %>%
-    gather_("realtime_period", "name", setdiff(names(df_series), "date")) %>%
+    gather("realtime_period", "name", contains(c(setdiff(names(df_series), "date")))) %>%
     na.omit() %>%
     mutate(realtime_period =
               paste(substr(.data$realtime_period, start = length_series_id + 2, stop = length_series_id + 5),

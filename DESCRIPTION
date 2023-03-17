@@ -1,6 +1,6 @@
 Package: alfred
 Title: Downloading Time Series from ALFRED Database for Various Vintages
-Version: 0.2.0
+Version: 0.2.1
 Authors@R: person("Onno", "Kleen", email = "r@onnokleen.de", role = c("aut", "cre"), comment = c(ORCID = "0000-0003-4731-4640"))
 Description: Provides direct access to the ALFRED (<https://alfred.stlouisfed.org>) and FRED (<https://fred.stlouisfed.org>) databases.
     Its functions return tidy data frames for different releases of the specified time series. 
@@ -8,16 +8,16 @@ Description: Provides direct access to the ALFRED (<https://alfred.stlouisfed.or
 Depends: R (>= 3.3.0)
 License: MIT + file LICENSE
 Encoding: UTF-8
-RoxygenNote: 7.1.1
+RoxygenNote: 7.2.3
 Imports:
     dplyr,
+    tidyselect,
     tidyr,
     tibble,
     magrittr,
     lubridate,
     jsonlite,
     rlang,
-    curl,
     httr
 URL: https://github.com/onnokleen/alfred/
 BugReports: https://github.com/onnokleen/alfred/issues
