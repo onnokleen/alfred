@@ -21,7 +21,7 @@ get_fred_series(
 
 \item{observation_end}{Date of last observation in "yyyy-mm-dd" format. Default: Last observation available.}
 
-\item{api_key}{You can supply your own apikey obtained via \url{https://research.stlouisfed.org/useraccount/login/secure/}
+\item{api_key}{You can supply your own apikey obtained via \url{https://fredaccount.stlouisfed.org/login/secure/)}
 if you want to run a large batch of requests. Otherwise you might run into query limits of the API.}
 }
 \description{

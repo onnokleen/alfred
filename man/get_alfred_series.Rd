@@ -27,7 +27,7 @@ get_alfred_series(
 
 \item{realtime_end}{Date of last real time period in "yyyy-mm-dd" format. Default: Last vintage date available.}
 
-\item{api_key}{You can supply your own apikey obtained via \url{https://research.stlouisfed.org/useraccount/login/secure/}
+\item{api_key}{You can supply your own apikey obtained via \url{https://fredaccount.stlouisfed.org/login/secure/)}
 if you want to run a large batch of requests. Otherwise you might run into query limits of the API.}
 }
 \description{

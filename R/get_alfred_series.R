@@ -9,7 +9,7 @@
 #' @param observation_end Date of last observation in "yyyy-mm-dd" format. Default: Last observation available.
 #' @param realtime_start Date of first real time period in "yyyy-mm-dd" format. Default: First vintage date available.
 #' @param realtime_end Date of last real time period in "yyyy-mm-dd" format. Default: Last vintage date available.
-#' @param api_key You can supply your own apikey obtained via \url{https://research.stlouisfed.org/useraccount/login/secure/}
+#' @param api_key You can supply your own apikey obtained via \url{https://fredaccount.stlouisfed.org/login/secure/)}
 #' if you want to run a large batch of requests. Otherwise you might run into query limits of the API.
 #' @details FRED time series IDs can be found on the respective site in ALFRED, e.g. \url{https://alfred.stlouisfed.org/series?seid=CPIAUCSL}.
 #' @keywords alfred
@@ -128,7 +128,7 @@ get_alfred_series <-
 #' @param series_name Choose a name for the series column in output. Default: series_id.
 #' @param observation_start Date of first observation in "yyyy-mm-dd" format. Default: Earliest observation available.
 #' @param observation_end Date of last observation in "yyyy-mm-dd" format. Default: Last observation available.
-#' @param api_key You can supply your own apikey obtained via \url{https://research.stlouisfed.org/useraccount/login/secure/}
+#' @param api_key You can supply your own apikey obtained via \url{https://fredaccount.stlouisfed.org/login/secure/)}
 #' if you want to run a large batch of requests. Otherwise you might run into query limits of the API.
 #' @keywords fred
 #' @export get_fred_series
